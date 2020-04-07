@@ -8,17 +8,17 @@ This repository forked from https://github.com/UCSD-AI4H/COVID-CT for small bugf
 
 Unzip CT_COVID.zip and CT_NonCOVID.zip at Images-processed directory.  
   
-  $ cd Images-processed  
-  $ unzip CT_COVID.zip  
-  $ unzip CT_NonCOVID.zip  
+    $ cd Images-processed  
+    $ unzip CT_COVID.zip  
+    $ unzip CT_NonCOVID.zip  
 
 Install requirement modules.  
   
-  $ pip install -r requirements.txt  
+    $ pip install -r requirements.txt  
   
 Train the neural network.  
   
-  $ python DenseNet169/DenseNet_predict.py  
+    $ python DenseNet169/DenseNet_predict.py  
 
 
   
