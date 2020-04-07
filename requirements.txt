@@ -1,0 +1,13 @@
+numpy==1.18.1
+torch==1.4.0
+scikit_image==0.16.2
+torchvision==0.5.0
+albumentations==0.4.5
+efficientnet_pytorch==0.6.3
+matplotlib==3.2.1
+torchxrayvision==0.0.4
+catalyst==20.4
+pandas==1.0.3
+Pillow==7.1.1
+scikit_learn==0.22.2.post1
+tqdm==4.45

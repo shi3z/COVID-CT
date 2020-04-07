@@ -98,7 +98,7 @@ torch.cuda.empty_cache()
 # In[2]:
 
 
-get_ipython().system('pip install --upgrade efficientnet-pytorch')
+#get_ipython().system('pip install --upgrade efficientnet-pytorch')
 
 
 # In[3]:
@@ -180,11 +180,19 @@ class CovidCTDataset(Dataset):
 
     
 if __name__ == '__main__':
-    trainset = CovidCTDataset(root_dir='new_data/4.4_image',
-                              txt_COVID='new_data/newtxt/train.txt',
-                              txt_NonCOVID='old_data/oldtxt/trainCT_NonCOVID.txt',
+    trainset = CovidCTDataset(root_dir='Images-processed',
+                              txt_COVID='Data-split/COVID/trainCT_COVID.txt',
+                              txt_NonCOVID='Data-split/NonCOVID/trainCT_NonCOVID.txt',
                               transform= train_transformer)
-    valset = CovidCTDataset(root_dir='new_data/4.4_image',
+    valset = CovidCTDataset(root_dir='Images-processed',
+                              txt_COVID='Data-split/COVID/valCT_COVID.txt',
+                              txt_NonCOVID='Data-split/NonCOVID/valCT_NonCOVID.txt',
+                              transform= train_transformer)
+    testset = CovidCTDataset(root_dir='Images-processed',
+                              txt_COVID='Data-split/COVID/testCT_COVID.txt',
+                              txt_NonCOVID='Data-split/NonCOVID/testCT_NonCOVID.txt',
+                              transform= train_transformer)
+    """valset = CovidCTDataset(root_dir='new_data/4.4_image',
                               txt_COVID='new_data/newtxt/val.txt',
                               txt_NonCOVID='old_data/oldtxt/valCT_NonCOVID.txt',
                               transform= val_transformer)
@@ -192,6 +200,7 @@ if __name__ == '__main__':
                               txt_COVID='new_data/newtxt/test.txt',
                               txt_NonCOVID='old_data/oldtxt/testCT_NonCOVID.txt',
                               transform= val_transformer)
+    """
     print(trainset.__len__())
     print(valset.__len__())
     print(testset.__len__())
@@ -229,12 +238,13 @@ def train(optimizer, epoch):
         
         # move data to device
         data, target = batch_samples['img'].to(device), batch_samples['label'].to(device)
-        data = data[:, 0, :, :]
-        data = data[:, None, :, :]
+        #data = data[:, 0, :, :]
+        #data = data[:, None, :, :]
 #         data, targets_a, targets_b, lam = mixup_data(data, target.long(), alpha, use_cuda=True)
         
         
         optimizer.zero_grad()
+        #print(data.shape)
         output = model(data)
         
         criteria = nn.CrossEntropyLoss()
@@ -294,8 +304,8 @@ def val(epoch):
         # Predict
         for batch_index, batch_samples in enumerate(val_loader):
             data, target = batch_samples['img'].to(device), batch_samples['label'].to(device)
-            data = data[:, 0, :, :]
-            data = data[:, None, :, :]
+            #data = data[:, 0, :, :]
+            #data = data[:, None, :, :]
             output = model(data)
             
             test_loss += criteria(output, target.long())
@@ -347,8 +357,8 @@ def test(epoch):
         # Predict
         for batch_index, batch_samples in enumerate(test_loader):
             data, target = batch_samples['img'].to(device), batch_samples['label'].to(device)
-            data = data[:, 0, :, :]
-            data = data[:, None, :, :]
+            #data = data[:, 0, :, :]
+            #data = data[:, None, :, :]
 #             print(target)
             output = model(data)
             
