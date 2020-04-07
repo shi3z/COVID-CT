@@ -2,8 +2,30 @@
 
 
 **We are continuously adding new COVID CT images and we would like to invite the community to contribute COVID CTs as well.**
+This repository forked from https://github.com/UCSD-AI4H/COVID-CT for small bugfix.
 
- 
+### Try Your AI
+
+Unzip CT_COVID.zip and CT_NonCOVID.zip at Images-processed directory.  
+  
+`
+$ cd Images-processed
+$ unzip CT_COVID.zip
+$ unzip CT_NonCOVID.zip
+`
+Install requirement modules.
+
+`
+$ pip install -r requirements.txt
+`
+Train the neural network.
+
+`
+$ python DenseNet169/DenseNet_predict.py
+`
+
+
+  
 
 ### Data Description
 
